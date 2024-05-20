@@ -1,7 +1,17 @@
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.g.loaded_perl_provider = false
+vim.g.clipboard = {
+  name = 'WslClipboard',
+  copy = {
+     ['+'] = 'clip.exe',
+    ['*'] = 'clip.exe',
+  },
+  paste = {
+    ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  },
+  cache_enabled = false,
+}
 
-require("core.autocmds")
-require("core.keymaps")
-require("core.plugins")
+vim.opt.termguicolors = true
+
+require("core")
